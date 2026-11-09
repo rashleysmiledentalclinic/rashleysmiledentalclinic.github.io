@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Navbar } from './components/Navbar'
-import { Hero, Marquee } from './components/Hero'
+import { Hero } from './components/Hero'
+import { VisitSteps } from './components/VisitSteps'
 import { About } from './components/About'
 import { Services } from './components/Services'
 import { Appointment, type BookingRequest } from './components/Appointment'
@@ -46,7 +47,7 @@ export default function App() {
       <Navbar />
       <main id="main">
         <Hero />
-        <Marquee />
+        <VisitSteps />
         <Services onBook={handleBook} />
         <About />
         <Appointment request={request} />

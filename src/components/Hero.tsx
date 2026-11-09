@@ -157,28 +157,3 @@ export function Hero() {
     </section>
   )
 }
-
-const MARQUEE_ITEMS = [
-  'Care with confidence',
-  'Clear price ranges',
-  'Gentle general dentistry',
-  'Kids welcome',
-  'Digital X-rays',
-  'Teeth whitening',
-  'Cagayan de Oro',
-]
-
-export function Marquee() {
-  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]
-  return (
-    <div className="marquee" aria-hidden="true">
-      <div className="marquee__track">
-        {items.map((item, i) => (
-          <span key={`${item}-${i}`} className="marquee__item">
-            {item}
-          </span>
-        ))}
-      </div>
-    </div>
-  )
-}
