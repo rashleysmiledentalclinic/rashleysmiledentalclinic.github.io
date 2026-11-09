@@ -27,7 +27,7 @@ export function Reveal({ children, delay = 0, className = '', as = 'div' }: Reve
           }
         }
       },
-      // Threshold 0 so tall blocks (e.g. the services ledger on phones) reveal as soon as they enter.
+      // Threshold 0 so tall blocks (e.g. the services grid on phones) reveal as soon as they enter.
       { threshold: 0, rootMargin: '0px 0px -6% 0px' },
     )
     observer.observe(node)

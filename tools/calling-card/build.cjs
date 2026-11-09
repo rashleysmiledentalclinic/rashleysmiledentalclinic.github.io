@@ -20,12 +20,13 @@ fs.mkdirSync(OUT, { recursive: true });
 const cfg = JSON.parse(fs.readFileSync(path.join(__dirname, 'card.json'), 'utf8'));
 const C = cfg.colors; // roles: brownDark/brown/brownMid = primary shades, pink* = accent shades
 
-const fontFile = (pkg, file) =>
-  'file://' + path.join(ROOT, 'node_modules', '@fontsource-variable', pkg, 'files', file);
+// Fonts come from card.json ("fonts": { display, displayItalic, body }), each a path inside
+// node_modules, so the card always uses the same self-hosted fonts as the site.
+const fontFile = (rel) => 'file://' + path.join(ROOT, 'node_modules', rel);
 const F = {
-  fraunces: fontFile('cormorant', 'cormorant-latin-wght-normal.woff2'),
-  frauncesItalic: fontFile('cormorant', 'cormorant-latin-wght-italic.woff2'),
-  jakarta: fontFile('dm-sans', 'dm-sans-latin-wght-normal.woff2'),
+  fraunces: fontFile(cfg.fonts.display),
+  frauncesItalic: fontFile(cfg.fonts.displayItalic || cfg.fonts.display),
+  jakarta: fontFile(cfg.fonts.body),
 };
 
 // Card is 3.5in x 2in → 336 x 192 CSS px at 96 dpi. B = bleed in px (12 = 0.125in).
@@ -39,8 +40,12 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 // When card.json names a logoImage (path relative to the repo root), the client's own
 // mark is used everywhere; otherwise the generic drawn tooth below is rendered.
 const logoImageUrl = cfg.logoImage ? 'file://' + path.join(ROOT, cfg.logoImage) : null;
+// "logoBadge": true in card.json puts the image on a white disc, for marks that need contrast
+// against the coloured panel.
 const logo = (size, ringA, ringB, toothA, toothB, smile, id) => logoImageUrl
-  ? `<img src="${logoImageUrl}" width="${size}" height="${size}" style="display:block;border-radius:50%" alt="">`
+  ? (cfg.logoBadge
+      ? `<span style="display:grid;place-items:center;width:${size}px;height:${size}px;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.18)"><img src="${logoImageUrl}" width="${Math.round(size*0.68)}" height="${Math.round(size*0.68)}" style="display:block" alt=""></span>`
+      : `<img src="${logoImageUrl}" width="${size}" height="${size}" style="display:block;border-radius:50%" alt="">`)
   : `
 <svg viewBox="0 0 64 64" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
   <defs>

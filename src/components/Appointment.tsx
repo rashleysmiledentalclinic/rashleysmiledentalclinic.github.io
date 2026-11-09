@@ -319,11 +319,11 @@ export function Appointment({ request }: AppointmentProps) {
           <div className="section__head">
             <span className="eyebrow">Book an appointment</span>
             <h2 id="appointment-title" className="h2">
-              Reserve your chair in <span className="italic-accent">under a minute</span>.
+              Book with <span className="italic-accent">confidence</span>
             </h2>
             <p className="lede">
               Choose a treatment, pick an open slot and leave your details. We confirm by text or
-              email, usually within the hour during clinic time.
+              email during clinic hours.
             </p>
           </div>
         </Reveal>
@@ -743,7 +743,7 @@ export function Appointment({ request }: AppointmentProps) {
                   ) : null}
 
                   <div className="panel__actions" style={{ justifyContent: 'center' }}>
-                    <button type="button" className="btn btn--gold" onClick={resetFlow}>
+                    <button type="button" className="btn btn--primary" onClick={resetFlow}>
                       Book another appointment
                     </button>
                   </div>

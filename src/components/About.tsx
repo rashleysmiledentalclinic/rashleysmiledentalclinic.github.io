@@ -1,41 +1,49 @@
 import { CLINIC } from '../data/clinic'
-import portraitUrl from '../assets/doctor-portrait.jpg'
 import { CalendarIcon, CheckIcon, HeartIcon, MailIcon, PhoneIcon, PinIcon, StarIcon } from './Icons'
 import { Reveal } from './Reveal'
 
 /** DEMO: placeholder milestones for presentation. */
 const MILESTONES = [
   {
-    year: '2021',
-    title: 'A single chair in Taguig',
-    text: 'CazzASmile opens with one chair, one promise and a waiting list of nervous first-timers.',
+    year: '2020',
+    title: 'Opening in a difficult year',
+    text: 'The clinic opens in June 2020 with strict sterilisation protocols and longer, calmer appointment slots.',
   },
   {
     year: '2022',
-    title: 'Digital X-rays and sterilisation suite',
-    text: 'Low-dose imaging and a dedicated sterilisation area are added so care is safer and faster.',
+    title: 'Digital X-rays arrive',
+    text: 'Low-dose digital imaging replaces film, making diagnosis faster and safer for every patient.',
   },
   {
     year: '2024',
-    title: 'Kids and family hours',
-    text: 'Saturday family slots launch, and the thousandth child receives a bravery sticker.',
+    title: 'Family Saturdays',
+    text: 'Saturday hours are set aside for families, with a gentler first-visit routine for children.',
   },
 ] as const
 
 const VALUES = [
   {
-    title: 'Prevention first',
-    text: 'We would rather clean and seal today than drill tomorrow.',
+    title: 'Clarity before treatment',
+    text: 'You see the price range and the plan before you agree to anything.',
   },
   {
-    title: 'Price ranges, not surprises',
-    text: 'Every service is listed with a range, and your quote is agreed before treatment starts.',
+    title: 'Gentle by default',
+    text: 'Topical numbing, a steady pace and a running explanation of what we are doing.',
   },
   {
-    title: 'Calm by design',
-    text: 'Numbing gel, a gentle pace and plenty of explanation for anxious patients.',
+    title: 'Prevention over repair',
+    text: 'Cleanings, sealants and fluoride come first; fillings and crowns only when needed.',
   },
 ] as const
+
+function getInitials(fullName: string): string {
+  return fullName
+    .split(/\s+/)
+    .filter((part) => part.length > 2)
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join('')
+}
 
 export function About() {
   const yearsOpen = new Date().getFullYear() - CLINIC.establishedYear
@@ -49,13 +57,20 @@ export function About() {
               <div className="section__head" style={{ marginBottom: 0 }}>
                 <span className="eyebrow">About the clinic</span>
                 <h2 id="about-title" className="h2">
-                  Why <span className="italic-accent">CazzASmile</span> was built.
+                  Why we <span className="italic-accent">started</span>
                 </h2>
                 <p className="story">{CLINIC.story}</p>
               </div>
             </Reveal>
 
-            <Reveal delay={80}>
+            <Reveal delay={60}>
+              <blockquote className="quote">
+                &ldquo;{CLINIC.motto}&rdquo;
+                <small>Dr. {CLINIC.doctor.fullName}, founder</small>
+              </blockquote>
+            </Reveal>
+
+            <Reveal delay={100}>
               <ol className="timeline" aria-label="Clinic milestones">
                 {MILESTONES.map((m) => (
                   <li key={m.year}>
@@ -67,7 +82,7 @@ export function About() {
               </ol>
             </Reveal>
 
-            <Reveal delay={120}>
+            <Reveal delay={140}>
               <ul className="values" aria-label="What we stand for">
                 {VALUES.map((v) => (
                   <li key={v.title}>
@@ -88,16 +103,8 @@ export function About() {
             <Reveal>
               <article className="doctor" aria-label={`About Dr. ${CLINIC.doctor.fullName}`}>
                 <div className="doctor__top">
-                  <div className="doctor__portrait">
-                    <img
-                      className="doctor__photo"
-                      src={portraitUrl}
-                      width={640}
-                      height={800}
-                      alt={`Portrait of Dr. ${CLINIC.doctor.fullName}, ${CLINIC.doctor.title}`}
-                      loading="lazy"
-                      decoding="async"
-                    />
+                  <div className="doctor__portrait" aria-hidden="true">
+                    <span className="doctor__initials">{getInitials(CLINIC.doctor.fullName)}</span>
                   </div>
                   <div className="doctor__ident">
                     <div className="doctor__kicker">Your dentist</div>
@@ -116,7 +123,7 @@ export function About() {
                       <PhoneIcon />
                     </span>
                     <span>
-                      <span className="contact-row__label">Call or text</span>
+                      <span className="contact-row__label">Phone</span>
                       {CLINIC.contact.phoneDisplay}
                     </span>
                   </a>
@@ -134,7 +141,7 @@ export function About() {
                       <PinIcon />
                     </span>
                     <span>
-                      <span className="contact-row__label">Clinic address</span>
+                      <span className="contact-row__label">Address</span>
                       {CLINIC.name}, {CLINIC.address}
                     </span>
                   </div>
@@ -152,7 +159,7 @@ export function About() {
                   <div className="fact__value">
                     {CLINIC.establishedMonth} {CLINIC.establishedYear}
                   </div>
-                  <p className="fact__note">{yearsOpen} years serving Taguig families</p>
+                  <p className="fact__note">{yearsOpen} years of confident smiles</p>
                 </div>
               </Reveal>
               <Reveal delay={120}>
@@ -162,7 +169,7 @@ export function About() {
                   </span>
                   <div className="fact__label">Location</div>
                   <div className="fact__value">{CLINIC.address}</div>
-                  <p className="fact__note">Ground floor, step-free access, parking nearby</p>
+                  <p className="fact__note">Easy to reach, with parking nearby</p>
                 </div>
               </Reveal>
               <Reveal delay={180}>
@@ -171,7 +178,7 @@ export function About() {
                     <HeartIcon />
                   </span>
                   <div className="fact__label">Our promise</div>
-                  <div className="fact__value">Gentle &amp; honest</div>
+                  <div className="fact__value">Gentle &amp; clear</div>
                   <p className="fact__note">A price range before any treatment begins</p>
                 </div>
               </Reveal>

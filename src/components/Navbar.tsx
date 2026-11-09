@@ -138,7 +138,7 @@ export function Navbar() {
         </nav>
 
         <div className="nav__actions">
-          <button type="button" className="btn btn--gold btn--sm nav__cta" onClick={() => go('appointment')}>
+          <button type="button" className="btn btn--primary btn--sm nav__cta" onClick={() => go('appointment')}>
             Book now
           </button>
           <button
@@ -170,7 +170,7 @@ export function Navbar() {
               {s.label}
             </a>
           ))}
-          <button type="button" className="btn btn--gold btn--block" onClick={() => go('appointment')}>
+          <button type="button" className="btn btn--primary btn--block" onClick={() => go('appointment')}>
             Book an appointment
           </button>
         </nav>

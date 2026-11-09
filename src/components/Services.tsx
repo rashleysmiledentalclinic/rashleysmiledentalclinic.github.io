@@ -26,11 +26,11 @@ export function Services({ onBook }: ServicesProps) {
           <div className="section__head section__head--center">
             <span className="eyebrow">Services &amp; price ranges</span>
             <h2 id="services-title" className="h2">
-              General dentistry, <span className="italic-accent">priced in the open</span>.
+              Everyday dentistry, <span className="italic-accent">clearly priced</span>
             </h2>
             <p className="lede">
-              Every treatment comes with a price range up front, so there are no surprises. Your
-              exact quote is confirmed at your consultation.
+              Every treatment is listed with a price range so you can plan with confidence. Your
+              exact quote is confirmed at your consultation, before anything begins.
             </p>
           </div>
         </Reveal>
@@ -51,51 +51,44 @@ export function Services({ onBook }: ServicesProps) {
           </div>
         </Reveal>
 
-        <Reveal delay={120}>
-          <div className="ledger" aria-live="polite">
-            <div className="ledger__head" aria-hidden="true">
-              <span />
-              <span>Treatment</span>
-              <span>Price range</span>
-              <span />
-            </div>
-            {visible.map((service, i) => (
-              <article
-                // Keying on filter re-runs the entrance animation after filtering.
-                key={`${filter}-${service.id}`}
-                className="service"
-                style={{ animationDelay: `${Math.min(i, 10) * 35}ms` }}
-              >
+        <div className="svc-grid" aria-live="polite">
+          {visible.map((service, i) => (
+            <article
+              // Keying on filter re-runs the entrance animation after filtering.
+              key={`${filter}-${service.id}`}
+              className="service"
+              style={{ animationDelay: `${Math.min(i, 8) * 45}ms` }}
+            >
+              <div className="service__top">
                 <span className="service__icon">
                   <ServiceGlyph icon={service.icon} />
                 </span>
-                <div className="service__main">
-                  <h3 className="service__name">
-                    {service.name}
-                    {service.popular ? <span className="service__badge">Popular</span> : null}
-                  </h3>
-                  <p className="service__desc">{service.description}</p>
-                </div>
-                <div className="service__meta">
+                <span className={`service__cat ${service.popular ? 'service__cat--popular' : ''}`}>
+                  {service.popular ? 'Popular' : service.category}
+                </span>
+              </div>
+              <h3 className="service__name">{service.name}</h3>
+              <p className="service__desc">{service.description}</p>
+              <div className="service__foot">
+                <div>
+                  <span className="price__label">Price range</span>
                   <span className="price__value">{formatPriceRange(service)}</span>
                   {service.priceUnit ? <span className="price__unit">{service.priceUnit}</span> : null}
-                  <span className="price__dur">≈ {service.durationMinutes} min · {service.category}</span>
+                  <span className="price__dur">≈ {service.durationMinutes} min</span>
                 </div>
-                <div className="service__action">
-                  <button
-                    type="button"
-                    className="btn btn--ghost btn--sm"
-                    onClick={() => onBook(service)}
-                    aria-label={`Book ${service.name}`}
-                  >
-                    Book
-                    <ArrowRightIcon className="btn__icon" />
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
-        </Reveal>
+                <button
+                  type="button"
+                  className="btn btn--ghost btn--sm"
+                  onClick={() => onBook(service)}
+                  aria-label={`Book ${service.name}`}
+                >
+                  Book
+                  <ArrowRightIcon className="btn__icon" />
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
 
         <p className="services__note">
           Ranges are in Philippine pesos (₱) and cover typical cases; complex cases are quoted

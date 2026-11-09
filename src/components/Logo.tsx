@@ -1,24 +1,20 @@
 import { CLINIC } from '../data/clinic'
-import logoSmall from '../assets/logo-192.png'
-import logoLarge from '../assets/logo-512.png'
+import logoUrl from '../assets/logo.svg'
 
 interface LogoMarkProps {
   className?: string
-  /** Use the 512 px version for large placements. */
-  large?: boolean
   /** Decorative by default; pass alt text to expose it to assistive tech. */
   alt?: string
 }
 
-/** The clinic's emerald-and-gold seal, supplied by the client. */
-export function LogoMark({ className, large = false, alt = '' }: LogoMarkProps) {
-  const size = large ? 512 : 192
+/** Outlined tooth with a small plus sign, in the clinic's plum. */
+export function LogoMark({ className, alt = '' }: LogoMarkProps) {
   return (
     <img
       className={className}
-      src={large ? logoLarge : logoSmall}
-      width={size}
-      height={size}
+      src={logoUrl}
+      width={64}
+      height={64}
       alt={alt}
       aria-hidden={alt ? undefined : true}
       decoding="async"
@@ -44,11 +40,11 @@ export function Brand({ onClick, href = '#home' }: BrandProps) {
         }
       }}
     >
-      <LogoMark className="brand__mark" />
+      <span className="brand__badge">
+        <LogoMark className="brand__mark" />
+      </span>
       <span className="brand__text">
-        <span className="brand__name">
-          Cazz<span className="brand__name-accent">A</span>Smile
-        </span>
+        <span className="brand__name">Rashley Smile</span>
         <span className="brand__sub">Dental Clinic</span>
       </span>
     </a>

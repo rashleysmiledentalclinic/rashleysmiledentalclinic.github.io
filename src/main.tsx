@@ -1,9 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import '@fontsource-variable/dm-sans'
-import '@fontsource-variable/cormorant'
-import '@fontsource-variable/cormorant/wght-italic.css'
-import '@fontsource/cinzel/600.css'
+import '@fontsource-variable/nunito'
+import '@fontsource-variable/nunito/wght-italic.css'
+import '@fontsource-variable/outfit'
 import './styles/global.css'
 import App from './App'
 
