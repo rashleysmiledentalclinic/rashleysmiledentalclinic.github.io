@@ -1,0 +1,37 @@
+{
+  "siteUrl": "https://cazzasmile.github.io/",
+  "siteLabel": "cazzasmile.github.io",
+  "doctor": {
+    "name": "Cazzy J. Maglaway",
+    "designation": "DMD",
+    "role": "Doctor of Dental Medicine · General Dentist"
+  },
+  "clinic": {
+    "name": "CazzASmile Dental Clinic",
+    "shortName": "CazzASmile",
+    "shortNameLines": [
+      "Cazz A",
+      "Smile"
+    ],
+    "subtitle": "Dental Clinic",
+    "address": "Taguig, Manila",
+    "established": "Est. 2021",
+    "tagline": "Casting smiles,",
+    "taglineAccent": "one tooth at a time."
+  },
+  "contact": {
+    "phone": "0908 765 4321",
+    "email": "cazzasmile@clinic.com"
+  },
+  "colors": {
+    "brownDark": "#0a2a1f",
+    "brown": "#14523d",
+    "brownMid": "#1b6b4f",
+    "brownLight": "#8a6a1f",
+    "pink": "#c9a24a",
+    "pinkDeep": "#a9842b",
+    "pinkPale": "#f5ead0",
+    "cream": "#f8f4ea"
+  },
+  "logoImage": "src/assets/logo-512.png"
+}
